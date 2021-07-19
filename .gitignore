@@ -1,0 +1,9 @@
+*.xml
+__pycache__
+build
+*.spec
+.idea
+.dist
+dist/data
+*.zip
+*.exe
