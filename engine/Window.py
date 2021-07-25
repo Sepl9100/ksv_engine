@@ -1,5 +1,4 @@
 from GLOBAL import *
-from levels.main_menu import *
 from engine.text_box import *
 
 
