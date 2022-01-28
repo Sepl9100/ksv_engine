@@ -3,7 +3,7 @@ from engine.entity import *
 from engine.line_path import *
 
 
-class AI:
+class Ai:
     def __init__(self, x, y, width, height, host, collision=False, layer=0):
         self.x = x
         self.y = y
