@@ -36,8 +36,6 @@ class AI:
         self.go_back = False
         if not self.back:
             self.repeat = False
-        if self.repeat:
-            self.disappear = False
 
     def update(self, speed):
         self.speed = speed
@@ -52,18 +50,17 @@ class AI:
                         self.needs_update = False
                         if not self.back:
                             if self.disappear:
-                                self.entity.sprite.make_invisible()
+                                self.entity.sprite.fill_image("DATA/textures/transparent.png", True)
             else:
                 self.entity.place(self.path[self.counter][0], self.path[self.counter][1])
                 self.counter -= 1
-                if self.rect.x == self.x_original and self.rect.y == self.y_original:
+                if self.rect.x <= self.x_original and self.rect.y <= self.y_original:
                     self.go_back = False
                     if not self.repeat:
                         self.needs_update = False
                         if self.disappear:
-                            self.entity.sprite.make_invisible()
-            if self.counter < 0:
-                self.counter = 0
+                            self.entity.sprite.fill_image("DATA/textures/transparent.png", True)
             if self.speed > 1:
                 self.speed -= 1
                 self.update(self.speed)
+
