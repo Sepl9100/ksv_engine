@@ -1,6 +1,6 @@
 from GLOBAL import *
-from engine.collider import *
-from engine.sprites import *
+from engine.COLLIDER import *
+from engine.SPRITE import *
 
 
 class Entity:
@@ -15,6 +15,8 @@ class Entity:
 
         self.collision = False
 
+    def load(self):
+        self.sprite.load()
         ENTITIES.append(self)
 
     def give_collision(self):

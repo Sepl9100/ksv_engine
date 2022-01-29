@@ -1,10 +1,11 @@
 from GLOBAL import *
-from engine.text_box import *
+from engine.TEXT_BOX import *
 
 
 class Window:
-    def __init__(self):
+    def __init__(self, game):
         self.window = self
+        self.game = game
         self.xoff = 0
         self.yoff = 0
         self.width = 1000
@@ -16,18 +17,14 @@ class Window:
         self.intro.sprite.y = self.height//2 - self.intro.sprite.height // 2
         self.intro.sprite.draw()
         self.update()
-        sleep(2)
+        sleep(0.1)
         self.intro.remove()
-
-
+        self.update()
 
     def update(self):
-        pg.display.set_caption(f"FPS: {round(APP_['GAMECLOCK'].get_fps(), 1)} - PyPong {VERSION} by {AUTHOR}")
+        for layer in RENDERLAYERS:
+            for sprite in layer:
+                sprite.draw()
+        pg.display.set_caption(f"FPS: {round(self.game.DRAW_CLOCK.get_fps(), 1)} - {GAMENAME} {VERSION} by {AUTHOR}")
         pg.display.flip()
 
-
-    def load_background(self, path):
-        source_scale = get_scale(path)
-        img = pg.image.load(path).convert_alpha()
-        return pg.transform.scale(img, (int(source_scale[0]*(self.width/source_scale[0])),
-                                              int(source_scale[1]*(self.height/source_scale[1]))))

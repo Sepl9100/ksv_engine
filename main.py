@@ -1,5 +1,5 @@
 from GLOBAL import *
-from engine.Window import *
+from engine.GAME import *
 import cProfile
 
 c_profile = True
@@ -7,9 +7,7 @@ c_profile = True
 
 class App:
     def __init__(self):
-        Main_Window = Window()  # initialise the window
-
-
+        self.game = Game()
 
 
 if c_profile:

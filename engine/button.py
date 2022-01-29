@@ -1,5 +1,5 @@
 from GLOBAL import *
-from engine.sprites import *
+from engine.SPRITE import *
 
 
 class Button:
@@ -37,6 +37,14 @@ class Button:
         self.shader4.fill_color(COLS["BLACK"])
 
         self.add_text(self.text)
+
+    def load(self):
+        self.sprite.load()
+        self.shader1.load()
+        self.shader2.load()
+        self.shader3.load()
+        self.shader4.load()
+        self.text_sprite.load()
 
     def draw_button(self, mx, my):
         if self.is_visible:

@@ -18,7 +18,6 @@ class Sprite(pg.sprite.Sprite):
         self.height = height
         self.width = width
         self.layer = layer
-        self.host = host
         self.color = ""
         self.img_path = ""
         self.rendertype = None
@@ -28,17 +27,15 @@ class Sprite(pg.sprite.Sprite):
         self.init2()
 
     def init2(self):
-
-        RENDERLAYERS[self.layer].append(self)
-        SPRITES.append(self)
         self.screen = self.host.window.screen
-
         self.surface = pg.Surface((self.width, self.height))  # create a Surface with given data
         self.rect = self.surface.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
 
-
+    def load(self):
+        RENDERLAYERS[self.layer].append(self)
+        SPRITES.append(self)
 
     def fill_color(self, color):
         self.rendertype = "color"
@@ -52,41 +49,6 @@ class Sprite(pg.sprite.Sprite):
             del self
         except:
             pass
-
-    def save(self):
-        GAME["GAME"][self.id] = {
-            "x": self.x,
-            "y": self.y,
-            "width": self.width,
-            "height": self.height,
-            "layer": self.layer,
-            "color": self.color,
-            "image": self.img_path,
-            "rendertype": self.rendertype,
-            "scale_to_surface": self.scale_to_surface
-        }
-
-    def load(self):
-        ser_inst = GAME["GAME"][self.id]
-        self.x = ser_inst["x"]
-        self.y = ser_inst["y"]
-        self.width = ser_inst["width"]
-        self.height = ser_inst["height"]
-        self.layer = ser_inst["layer"]
-        self.color = ser_inst["color"]
-        self.rendertype = ser_inst["rendertype"]
-        self.fill_image(ser_inst["image"], ser_inst["scale_to_surface"])
-
-        self.init2()
-        print("loaded " + self.id + ":\n" + str(ser_inst))
-        if self.rendertype == "color":
-            self.fill_color(pg.Color("red"))
-
-        if self.rendertype == "image":
-            self.fill_image(ser_inst["image"], ser_inst["scale_to_surface"])
-
-
-
 
     def draw(self):
         self.rect.x = round(self.x + self.host.xoff)

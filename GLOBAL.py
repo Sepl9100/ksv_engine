@@ -2,22 +2,21 @@ import PIL.Image as Image
 import PIL
 import pygame as pg
 import os
-from threading import *
+import threading
 import webbrowser
 import random
 from time import sleep
 
-AUTHOR = ""
-VERSION = 0
+AUTHOR = "Sebastian Reichl"
+VERSION = 0.1
+GAMENAME = "ENGINE BETA"
 
 pg.init()
 
 
 APP_ = {
-    "GAMECLOCK": pg.time.Clock(),
     "FONT_1": pg.font.SysFont('Bahnschrift', 30),
-    "FONT_2": pg.font.SysFont('Bahnschrift', 17),
-    "MAX_FPS": 60,
+    "FONT_2": pg.font.SysFont('Bahnschrift', 17)
 }
 
 COLS = {
@@ -29,22 +28,24 @@ COLS = {
     "CYAN": (0, 255, 255)
 }
 
-TEXT = [{}]
-
-GAME = {
-    "GAME": {}
-}
-
-
-# create Render Layers
+COLLIDERS = []
+ENTITIES = []
+SPRITES = []
+AIS = []
 RENDERLAYERS = []
 for i in range(200):
     RENDERLAYERS.append([])
 
-COLLIDERS = []
+SINGLE_LISTS = [COLLIDERS, ENTITIES, SPRITES, AIS]
 
-ENTITIES = []
 
-SPRITES = []
-
-AIS = []
+def clear_lists():
+    print("\nclearing lists")
+    for layer in RENDERLAYERS:
+        for sprite in layer:
+            del sprite
+        layer.clear()
+    for list in SINGLE_LISTS:
+        for item in list:
+            del item
+        list.clear()

@@ -1,5 +1,5 @@
 from GLOBAL import *
-from engine.sprites import *
+from engine.SPRITE import *
 
 
 class TextBox:
@@ -16,7 +16,6 @@ class TextBox:
 
         self.sprite = Sprite(self.x, self.y, 1, 1, self.host, "TEXTBOX_1", self.layer)
         self.sprite.fill_text(self.text, self.font, self.color)
-
 
     def apply_changes(self):
         self.sprite.fill_text(self.text, self.font, self.color)

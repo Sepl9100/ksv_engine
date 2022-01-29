@@ -1,6 +1,6 @@
 from GLOBAL import *
-from engine.entity import *
-from engine.line_path import *
+from engine.ENTITY import *
+from engine.functions.line_path import *
 
 
 class Ai:

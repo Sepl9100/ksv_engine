@@ -1,6 +1,6 @@
 from GLOBAL import *
-from engine.sprites import *
-from engine.text_box import *
+from engine.SPRITE import *
+from engine.TEXT_BOX import *
 
 
 class TextInputBox:
